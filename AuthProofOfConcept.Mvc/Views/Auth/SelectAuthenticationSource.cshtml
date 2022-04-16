@@ -1,0 +1,77 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Select Authentication Type";
+    Layout = "_Layout";
+}
+
+@if (!String.IsNullOrWhiteSpace(User?.Identity?.Name))
+{
+    <div class="starter-template">
+        <h1>Welcome @User.Identity.Name</h1>
+        <p class="lead">Here are your claims</p>
+        <ul>
+            @foreach (var claim in User.Claims)
+            {
+                <li>
+                    <em>@claim.Type</em>: @claim.Value
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <h2>Choose your path to authentication zen wisely...</h2>
+    <br/>
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col">
+
+
+                <div class="col card rounded shadow">
+                    <div class="card-body">
+                        <h5>Facebook!</h5>
+                        <a asp-controller="Auth" asp-action="FacebookSignIn">
+                            These people won't sell your personal info to anyone that hasn't paid them...
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="card rounded shadow">
+                    <div class="card-body">
+                        <h5>Google!</h5>
+                        <a asp-controller="Auth" asp-action="GoogleSignIn">
+                            These people will only sell your info to anyone that has paid them...
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card rounded shadow">
+                    <div class="card-body">
+
+                        <h5>Don't Authenticate</h5>
+                        <a href="https://www.google.com/">
+                            Don't nobody got nothin' on you bro!
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+
+
+
+
+
+
+
